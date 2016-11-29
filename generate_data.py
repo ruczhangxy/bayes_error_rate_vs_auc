@@ -15,7 +15,7 @@ SAMPLE_FNAME = 'sample.txt'
 生成特征和样本标签。
 '''
 def generate_sample(num_sample, dup_ratio):
-    feature_id = 0
+    feature_id = 1
     with open(SAMPLE_FNAME, 'w') as f:
         for i in range(num_sample):
             if random.random() > dup_ratio:
