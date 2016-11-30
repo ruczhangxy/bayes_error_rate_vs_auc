@@ -8,13 +8,13 @@ import random
 import itertools
 
 NUM_SAMPLE = 10000
-DUP_RATIO = 0.7
+DUP_RATIO = 0.8
 SAMPLE_FNAME = 'sample.txt'
 
 '''
 生成特征和样本标签。
 '''
-def generate_sample(num_sample, dup_ratio):
+def generate_raw_sample(num_sample, dup_ratio):
     feature_id = 1
     with open(SAMPLE_FNAME, 'w') as f:
         for i in range(num_sample):
@@ -45,9 +45,10 @@ def compute_prob():
 
     return
 
-def main():
-    generate_sample(NUM_SAMPLE, DUP_RATIO)
+def generate_sample(dup_ratio):
+    generate_raw_sample(NUM_SAMPLE, dup_ratio)
     compute_prob()
+    return
 
 if __name__ == '__main__':
-    main()
+    generate_sample(DUP_RATIO)

@@ -31,7 +31,6 @@ def compute_auc(table):
     y = table_t[1]
     y_pred = table_t[2]
     auc = metrics.roc_auc_score(y, y_pred)
-    print 'AUC=%s' % auc
     return auc
 
 def compute_bayes_error_rate(table):
@@ -48,14 +47,15 @@ def compute_bayes_error_rate(table):
         err_cnt += sum(1 if ele[1] != y_hat else 0 for (ele, y_hat) in zip(group, y_pred))
 
     err_rate = err_cnt * 1.0 / len(table)
-    print 'Bayes Error Rate=%s' % err_rate
     return err_rate
 
-def main():
+def compute_metrics():
     table = read_data()
-    compute_auc(table)
-    compute_bayes_error_rate(table)
-    return
+    auc = compute_auc(table)
+    ber = compute_bayes_error_rate(table)
+    print 'AUC=%s' % auc
+    print 'BER=%s' % ber
+    return (auc, ber)
 
 if __name__ == '__main__':
-    main()
+    compute_metrics()
